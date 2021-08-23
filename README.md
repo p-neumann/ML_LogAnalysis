@@ -1,14 +1,15 @@
 # Dr.WangDataAnalysis1
-The idea of detecting web attacks through machine learning is not a brand new topic, but an area that still needs better development and research on. 
-This project analyzied around 8000000 log flow records from a company in a 5 hour range. After pre-process its data, the machine detected some records being potential attacks and gave its likeihood.
+The idea of detecting web attacks through machine learning is not a brand new topic, but an area that still needs better development and research on. This project analyzied around 8000000 log flow records from a software company's user log in page in a 5 hour range. After pre-process its data, the machine detected some records being potential attacks and gave its likeihood based on its suspicious behaviors. 
 
-The project first process the data into pandas dataframe, then omit all the features of the record that are not interested in detecting the attacks. 
-Next, the data is being compressed from 8000000 datas to around 17000 by combining the records that has the same source and destination ip address in the same unix time. 
-This process significantly improved the efficiency of machine learning. 
-Then, unsupervised machine learning was applied to give the detection of the dataset using K-means clustering. 
-Training/testing the data into 0.66/0.33 to analyze the likeihood of each response being an attacks, and use the previous result as a superviser for accuracy.
+The project first process the data into pandas dataframe, then omit all the features of the record that are not interested in detecting the attacks. Next, the data is being compressed from 8000000 datas to around 40000 by combining the records that has the same source and destination ip address in the same unix time. The higher rate the compression is, the more duplicate responsed there is in the dataset. This significantly improved the efficiency of machine learning. Then, unsupervised machine learning was applied to give the detection of the dataset using K-means clustering. The three clusters each represents not-suspicious, suspicious, and gray area. 
 
-The result is saved into result.csv and all detected attacks are saved in attacks.csv
+Training/testing the data into 0.66/0.33 to analyze the likeihood of each response' abnormal behaviors, and use the previous result as a superviser for accuracy. The gray area is again using k-mean clustering to seperate into 2 clusters, labeled as "more suspicious" and "less suspicious". The "more suspicious" are added into the suspicious_activity dataset. Doing so ensures the machine does not miss any responsed that gets filtered out from the analysis but still remain an abnormal behavior. The likelihood of the suspicious is calculated based on the percentage over the maximum response in 1 second.
+
+The initial approach of this problem was to use k-mean clustering based on how much time it took to process the response. However, this is not significant due to the delay from each server and unknown source of the dataset being analyzed. After researching on the definition of abnormal behaviors in reality, most of the features are filtered out because they do not have much impact in analyzing attacks. An attack for a general log-in page is defined as multiple visits, responses, callbacks in a short period of time. Thus, pre-processing the data by combining each duplicate responsed in the same second helps determine the responses' number of visits that stands out.
+
+The 3-2 double-clustering technique helps the machine narrows down the suspicious activities. If k-means clustering is applied only once with 2 clusters, the uncertain groups of dataset's log records would possibly wrong the result. Therefore, creating a gray area in the middle of two certainties helps detecting the potential attacks that could be missed.
+
+The result is saved into result.csv and all detected attacks are saved in suspicious_activity.csv
 
 References:
 
