@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+# data analysis ml v1
+
+main file: data_analysis_ml-v1.ipynb
+data directory: data (114 csv files)
+README.md (this file)
+Running environment: Jupyter with matplotlib, pandas, numpy, sklearn
+
+
+<b>Keywords</b>: log analysis, machine learning, behavior analysis, unsupervised learning, supervised learning.
+
+Detecting web attacks using machine learning is an area that has drawn attention and requires continuous research and development.  This project analyzes 822,226 log records from a company's web login page in a 5 hour range. After cleaning and pre-processing the data, the algorithm detected records that could potentially be attacks. It then calculated the likeihood (of attacks) based on the abmormal behaviors. 
+=======
 # Log Data Analysis with ML v1.0
 Detecting cyber attacks through machine learning is an area that much effort has been put into in research and development. This project analyzed 822,226 log records from a  company's web login page in a 5-hour range. The Python code first clearns and pre-processes the dataset, and then uses a ML algorithm to identify records that are potential attacks. It finally calculates the likelihood based on the suspicious behaviors. 
 
@@ -8,11 +21,17 @@ The "cleaned" data is divided into training/testing with the ratio 0.66/0.33 for
 The initial approach of this problem was to use k-mean clustering based on how much time it took to process the response. However, this is not significant due to the delay from each server and the unknown source of the dataset being analyzed. After researching the definition of abnormal behaviors in reality, most of the features are filtered out because they do not have much impact in analyzing attacks. An attack for a general log-in page is defined as multiple visits, responses, callbacks in a short period of time. Thus, pre-processing the data by combining each duplicate response in the same second helps determine the responses' number of visits that stands out.
 
 The 3-2 double-clustering technique helps the machine narrows down the suspicious activities. If k-means clustering is applied only once with 2 clusters, the uncertain groups of the dataset's log records would possibly wrong the result. Therefore, creating a gray area in the middle of two certainties helps to detect the potential attacks that could be missed.
+>>>>>>> d77fc8064a2f7eef90e95bb95a92864f8ff2f17c
 
-The result is saved into result.csv and all detected attacks are saved in suspicious_activity.csv
+The main idea is to use unsupervised learning to better understand the distribution of the input data. Supervised learning is then applied to generate predictions. As a result, the algorithm could learn how to predict/cassify on output from new inputs. Reinforment learning (RL) learns from experiences over time. It can be considerd with more data feed into the system. 
 
-References:
+The project first loads the input data into a pandas dataframe, then it removes the features that are not of interests to be used in detecting attacks. Next, the data are "compressed" from 800,000+ to around 40,000 by combining the records that have the same source and destination ip addresses in the same unit time. The higher the compression rate, the more the duplications in the dataset. This significantly improved the efficiency of machine learning. Unsupervised machine learning is applied to the dataset using K-means clustering. The output three clusters are labeled not-suspicious, suspicious, and gray (transition) area. 
 
+<<<<<<< HEAD
+The pre-processed data are splitted into 0.66/0.33 for training/testing to further analyze the likelihood of each response's abnormal behaviors. Using results (three clusters) from the unsupervised learning as a superviser, the algorithm continues apply supervised machine learning to discover the threats. In addition to areas that are considered "confident" or "no confident", the transition (gray) area is further analyzed using k-mean clustering to seperate into 2 clusters, labeled as "more suspicious" and "less suspicious". The "more suspicious" tags are then added into the suspicious_activity dataset. By doing so it ensures the machine does not miss any respons that get filtered out from the analysis but still remain an abnormal behavior. The likelihood of the suspicious is calculated based on the percentage over the maximum response per second.
+
+The initial approach of this problem was to use k-mean clustering based on how much time it took to process the response. However, this is not significant due to the delay from each server and unknown source of the dataset being analyzed. After researching on the definition of abnormal behaviors in reality, most of the features are filtered out because they do not have much impact in analyzing attacks. An attack for a general log-in page is defined as multiple visits, responses, callbacks in a short period of time. Thus, pre-processing the data by combining each duplicate responsed in the same second helps determine the responses' number of visits that stands out.
+=======
 <li>Gong, X., Zhou, Y., Bi, Y., He, M., Sheng, S., Qiu, H., He, R., & Lu, J. (2019, October 3). Estimating web attack detection via model uncertainty from inaccurate annotation. IEEE Xplore. https://ieeexplore.ieee.org/abstract/document/8854029. 
     
 <br>This article illustrated the potential attacks in log records that are not successfully recorded, which are label as "unknown". This project is aware of the situation from this article. All the unknown log flow records have no source and destination IP address, therefore are all filtered out before creating the Panda dataframe to avoid it reducing the accuracy of the result.</li><br>
@@ -29,8 +48,8 @@ The idea of using K-means clustering, sklearn, data split, training, and testing
 This article discussed the feature construction and feature selection of web attack detection. This project applied the idea of omitting the features that are not interested in attack detection. </li><br>
 <li>Betarte, G., Pardo, Á., &amp; Martínez, R. (2019, January 17). Web application attacks detection using machine learning techniques. IEEE Xplore. https://ieeexplore.ieee.org/document/8614199. 
 <br>
+>>>>>>> d77fc8064a2f7eef90e95bb95a92864f8ff2f17c
 
+The 3-2 two-tier clussing technique helps the machine narrows down the suspicious activities. If the k-means clustering is applied only once with 2 clusters, the uncertain groups of dataset would possibly be wrong for the result. Therefore, creating a gray (transition) area in the middle of two certainties helps detecting the potential attacks that could be missed.
 
-</li><br>
-<li>Abdulraheem, M., &amp; Ibraheem, N. (2019). A DETAILED ANALYSIS OF NEW INTRUSION DETECTION DATASET. http://www.jatit.org/volumes/Vol97No17/4Vol97No17.pdf</li><br>
-<li>https://github.com/p-neumann/User-Behavior-Analysis-and-Prediction</li>
+The result is saved into result.csv and all detected attacks are saved in the suspicious_activity.csv
