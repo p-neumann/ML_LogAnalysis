@@ -2,9 +2,9 @@
 # data analysis ml v1
 
 <li>main file: data_analysis_ml-v1.ipynb</li>
-###data directory: data (114 csv files)
-###README.md (this file)
-###Running environment: Jupyter with matplotlib, pandas, numpy, sklearn
+<li>data directory: data (114 csv files)</li>
+<li>README.md (this file)</li>
+<li>Running environment: Jupyter with matplotlib, pandas, numpy, sklearn</li>
 
 
 <b>Keywords</b>: log analysis, machine learning, behavior analysis, unsupervised learning, supervised learning.
