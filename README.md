@@ -10,7 +10,7 @@
 <b>Keywords</b>: log analysis, machine learning, behavior analysis, unsupervised learning, supervised learning.
 
 =======
-# Log Data Analysis with ML v1.0
+## Log Data Analysis with ML v1.0
 Detecting cyber attacks through machine learning is an area that much effort has been put into in research and development. This project analyzed 822,226 log records from a  company's web login page in a 5-hour range. The Python code first clearns and pre-processes the dataset, and then uses a ML algorithm to identify records that are potential attacks. It finally calculates the likelihood based on the suspicious behaviors. 
 
 The project first loads the data into Pandas data frame and removes features in the record that are not of interests in detecting the attacks. Next, data are "compressed" from 822,226 data to 44,514 by combining the records that have the same source and destination IP addresses in the same unit time. The higher the compression rate is, the more duplicate responses in the dataset. This significantly improved the efficiency of the process. Then, unsupervised machine learning is applied to get the detection of the dataset using K-means clustering. The three clusters are: not-suspicious, suspicious, and gray (in-between) area. 
@@ -20,13 +20,11 @@ The "cleaned" data is divided into training/testing with the ratio 0.66/0.33 for
 The initial approach of this problem was to use k-mean clustering based on how much time it took to process the response. However, this is not significant due to the delay from each server and the unknown source of the dataset being analyzed. After researching the definition of abnormal behaviors in reality, most of the features are filtered out because they do not have much impact in analyzing attacks. An attack for a general log-in page is defined as multiple visits, responses, callbacks in a short period of time. Thus, pre-processing the data by combining each duplicate response in the same second helps determine the responses' number of visits that stands out.
 
 The 3-2 double-clustering technique helps the machine narrows down the suspicious activities. If k-means clustering is applied only once with 2 clusters, the uncertain groups of the dataset's log records would possibly wrong the result. Therefore, creating a gray area in the middle of two certainties helps to detect the potential attacks that could be missed.
->>>>>>> d77fc8064a2f7eef90e95bb95a92864f8ff2f17c
 
 The main idea is to use unsupervised learning to better understand the distribution of the input data. Supervised learning is then applied to generate predictions. As a result, the algorithm could learn how to predict/cassify on output from new inputs. Reinforment learning (RL) learns from experiences over time. It can be considerd with more data feed into the system. 
 
 The project first loads the input data into a pandas dataframe, then it removes the features that are not of interests to be used in detecting attacks. Next, the data are "compressed" from 800,000+ to around 40,000 by combining the records that have the same source and destination ip addresses in the same unit time. The higher the compression rate, the more the duplications in the dataset. This significantly improved the efficiency of machine learning. Unsupervised machine learning is applied to the dataset using K-means clustering. The output three clusters are labeled not-suspicious, suspicious, and gray (transition) area. 
 
-<<<<<<< HEAD
 The pre-processed data are splitted into 0.66/0.33 for training/testing to further analyze the likelihood of each response's abnormal behaviors. Using results (three clusters) from the unsupervised learning as a superviser, the algorithm continues apply supervised machine learning to discover the threats. In addition to areas that are considered "confident" or "no confident", the transition (gray) area is further analyzed using k-mean clustering to seperate into 2 clusters, labeled as "more suspicious" and "less suspicious". The "more suspicious" tags are then added into the suspicious_activity dataset. By doing so it ensures the machine does not miss any respons that get filtered out from the analysis but still remain an abnormal behavior. The likelihood of the suspicious is calculated based on the percentage over the maximum response per second.
 
 =======
