@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # data analysis ml v1
 
-###main file: data_analysis_ml-v1.ipynb
+<li>main file: data_analysis_ml-v1.ipynb</li>
 ###data directory: data (114 csv files)
 ###README.md (this file)
 ###Running environment: Jupyter with matplotlib, pandas, numpy, sklearn
