@@ -9,7 +9,6 @@ Running environment: Jupyter with matplotlib, pandas, numpy, sklearn
 
 <b>Keywords</b>: log analysis, machine learning, behavior analysis, unsupervised learning, supervised learning.
 
-Detecting web attacks using machine learning is an area that has drawn attention and requires continuous research and development.  This project analyzes 822,226 log records from a company's web login page in a 5 hour range. After cleaning and pre-processing the data, the algorithm detected records that could potentially be attacks. It then calculated the likeihood (of attacks) based on the abmormal behaviors. 
 =======
 # Log Data Analysis with ML v1.0
 Detecting cyber attacks through machine learning is an area that much effort has been put into in research and development. This project analyzed 822,226 log records from a  company's web login page in a 5-hour range. The Python code first clearns and pre-processes the dataset, and then uses a ML algorithm to identify records that are potential attacks. It finally calculates the likelihood based on the suspicious behaviors. 
@@ -30,7 +29,6 @@ The project first loads the input data into a pandas dataframe, then it removes 
 <<<<<<< HEAD
 The pre-processed data are splitted into 0.66/0.33 for training/testing to further analyze the likelihood of each response's abnormal behaviors. Using results (three clusters) from the unsupervised learning as a superviser, the algorithm continues apply supervised machine learning to discover the threats. In addition to areas that are considered "confident" or "no confident", the transition (gray) area is further analyzed using k-mean clustering to seperate into 2 clusters, labeled as "more suspicious" and "less suspicious". The "more suspicious" tags are then added into the suspicious_activity dataset. By doing so it ensures the machine does not miss any respons that get filtered out from the analysis but still remain an abnormal behavior. The likelihood of the suspicious is calculated based on the percentage over the maximum response per second.
 
-The initial approach of this problem was to use k-mean clustering based on how much time it took to process the response. However, this is not significant due to the delay from each server and unknown source of the dataset being analyzed. After researching on the definition of abnormal behaviors in reality, most of the features are filtered out because they do not have much impact in analyzing attacks. An attack for a general log-in page is defined as multiple visits, responses, callbacks in a short period of time. Thus, pre-processing the data by combining each duplicate responsed in the same second helps determine the responses' number of visits that stands out.
 =======
 <li>Gong, X., Zhou, Y., Bi, Y., He, M., Sheng, S., Qiu, H., He, R., & Lu, J. (2019, October 3). Estimating web attack detection via model uncertainty from inaccurate annotation. IEEE Xplore. https://ieeexplore.ieee.org/abstract/document/8854029. 
     
